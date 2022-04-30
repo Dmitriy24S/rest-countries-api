@@ -1,0 +1,55 @@
+.filter {
+  position: relative;
+  cursor: pointer;
+  margin-top: 2rem;
+  max-width: 13rem;
+  background-color: var(--bg-dark-secondary);
+  border-radius: var(--radius);
+  box-shadow: 0px 5px 8px 0px rgb(0 0 0 / 15%);
+}
+.light-mode .filter {
+  background-color: var(--bg-light-secondary);
+  box-shadow: var(--box-shadow-light);
+}
+.filter button {
+  padding: 1.5rem 2rem;
+  padding-right: 1.5rem;
+  min-width: 12rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-list a {
+  padding: 1rem 2rem;
+}
+/* icon */
+.filter-icon {
+  transform: rotate(-180deg);
+  transition: transform 150ms ease-in-out;
+}
+.open-menu .filter-icon {
+  transform: rotate(0);
+}
+/* drop down menu */
+.filter-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: calc(100% + 0.5rem);
+  text-align: left;
+  background-color: var(--bg-dark-secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow-dark);
+}
+.light-mode .filter-list {
+  background-color: var(--bg-light-secondary);
+  box-shadow: var(--box-shadow-light);
+}
+@media (min-width: 550px) {
+  .filter {
+    margin-left: 2rem;
+    margin-top: 2.5rem;
+  }
+}
