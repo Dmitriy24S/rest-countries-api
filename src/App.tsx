@@ -1,19 +1,44 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Filter from "./components/Filter/Filter";
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
+import Filter from "./components/Filter/Filter";
+import CountryCard from "./components/CountryCard/CountryCard";
+
+type CountryData = {
+  name: string;
+  population: string;
+  region: string;
+  flag: string;
+  capital: string;
+  code: string;
+  numericCode: string;
+  subregion: string;
+  topLevelDomain: string;
+  borders?: string[];
+  currencies: string[];
+  languages: string[];
+  nativeName: string;
+};
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<CountryData[]>([]);
   const [darkMode, setDarkMode] = useState(true);
 
+  // Fetch data on load
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://restcountries.com/v2/all");
-      const data = await response.json();
-      setData(data);
-      // console.log(data);
+      try {
+        const response = await fetch("https://restcountries.com/v2/all");
+        const data = await response.json();
+        // console.log(data);
+        setData(data);
+        // setIsLoading(false);
+        // setFilteredData(data);
+      } catch (error) {
+        // setIsLoading(true);
+        console.error(error);
+      }
     };
     fetchData();
   }, []);
@@ -22,10 +47,17 @@ function App() {
     <div className={`App ${!darkMode ? "light-mode" : ""}`}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <main>
-        <div className="country-list-actions">
+        <section className="country-list-actions">
           <Search />
           <Filter />
-        </div>
+        </section>
+        {/* Country list container*/}
+        <section className="country-list">
+          {/* Country list */}
+          {data.map((item) => (
+            <CountryCard {...item} key={item.numericCode} />
+          ))}
+        </section>{" "}
       </main>
     </div>
   );

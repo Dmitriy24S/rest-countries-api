@@ -39,24 +39,36 @@ ul {
   margin: 0;
 }
 
+/* Main */
 .App {
   min-height: 100vh;
   text-align: center;
   background-color: var(--bg-dark-primary);
   color: var(--bg-light-secondary);
 }
-
 main {
   max-width: 60rem;
   padding: 0 1.5rem;
   margin: 0 auto;
 }
 
+/* Light / Dark mode */
 .light-mode {
   background-color: var(--bg-light-primary);
   color: var(--clr-dark);
 }
 
+/* Country list */
+.country-list {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* Country actions section - tablet / desktop */
 @media (min-width: 550px) {
   .country-list-actions {
     display: flex;
