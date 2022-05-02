@@ -24,6 +24,7 @@ type CountryData = {
 function App() {
   const [data, setData] = useState<CountryData[]>([]);
   const [darkMode, setDarkMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch data on load
   useEffect(() => {
@@ -33,10 +34,10 @@ function App() {
         const data = await response.json();
         // console.log(data);
         setData(data);
-        // setIsLoading(false);
+        setIsLoading(false);
         // setFilteredData(data);
       } catch (error) {
-        // setIsLoading(true);
+        setIsLoading(true);
         console.error(error);
       }
     };
@@ -53,6 +54,12 @@ function App() {
         </section>
         {/* Country list container*/}
         <section className="country-list">
+          {/* Loading */}
+          {isLoading && (
+            <section className="loading">
+              <h2>Loading...</h2>
+            </section>
+          )}
           {/* Country list */}
           {data.map((item) => (
             <CountryCard {...item} key={item.numericCode} />
