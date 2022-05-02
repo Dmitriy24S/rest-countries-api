@@ -19,8 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: inherit;
 }
-.filter-list a {
+.filter-list button {
   padding: 1rem 2rem;
 }
 /* icon */
@@ -47,9 +48,20 @@
   background-color: var(--bg-light-secondary);
   box-shadow: var(--box-shadow-light);
 }
+/* Tablet / Desktop */
 @media (min-width: 550px) {
+  /* filter section spacing */
   .filter {
     margin-left: 2rem;
     margin-top: 2.5rem;
+  }
+}
+/* Hover filter list item */
+@media (hover) {
+  .filter-list button:hover {
+    background-color: hsl(215, 19%, 30%);
+  }
+  .light-mode .filter-list button:hover {
+    background-color: hsl(0, 0%, 92%);
   }
 }

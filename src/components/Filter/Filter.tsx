@@ -1,9 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import "./Filter.css";
 
-const Filter = () => {
+type FilterProps = {
+  selectedFilter: string;
+  setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Filter = ({ selectedFilter, setSelectedFilter }: FilterProps) => {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  // Set selected filter, close menu
+  const handleFilterChoice = (e: React.MouseEvent) => {
+    const filterValue = e.currentTarget as HTMLButtonElement;
+    setSelectedFilter(filterValue.innerText);
+    setIsFilterMenuOpen(false);
+  };
 
   return (
     <section className={`filter ${isFilterMenuOpen ? "open-menu" : ""}`}>
@@ -11,26 +23,31 @@ const Filter = () => {
         aria-label="open filter list"
         onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
       >
-        Filter by Region
-        <BiChevronDown className="filter-icon" />
+        <>
+          {selectedFilter !== "All" ? selectedFilter : "Filter by Region"}
+          <BiChevronDown className="filter-icon" />
+        </>
       </button>
       {isFilterMenuOpen && (
         <div className="filter-list">
           <ul>
             <li>
-              <a href="#/">Africa</a>
+              <button onClick={(e) => handleFilterChoice(e)}>All</button>
             </li>
             <li>
-              <a href="#/">America</a>
+              <button onClick={(e) => handleFilterChoice(e)}>Africa</button>
             </li>
             <li>
-              <a href="#/">Asia</a>
+              <button onClick={(e) => handleFilterChoice(e)}>Americas</button>
             </li>
             <li>
-              <a href="#/">Europe</a>
+              <button onClick={(e) => handleFilterChoice(e)}>Asia</button>
             </li>
             <li>
-              <a href="#/">Oceania</a>
+              <button onClick={(e) => handleFilterChoice(e)}>Europe</button>
+            </li>
+            <li>
+              <button onClick={(e) => handleFilterChoice(e)}>Oceania</button>
             </li>
           </ul>
         </div>
