@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import "./Header.css";
 
@@ -11,7 +12,9 @@ const Header = ({ darkMode, setDarkMode }: HeaderProps) => {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="logo">Where in the world?</div>
+        <Link to="/">
+          <div className="logo">Where in the world?</div>
+        </Link>
         {/* Theme toggle */}
         <button
           className="theme-toggle"
