@@ -1,11 +1,12 @@
 .country-card {
   text-align: left;
-  width: 80%;
+  min-width: 320px;
   max-width: 20rem;
   border-radius: var(--radius);
   background-color: var(--bg-dark-secondary);
   box-shadow: var(--box-shadow-dark);
   overflow: hidden;
+  transition: transform 150ms ease-in-out;
 }
 .light-mode .country-card {
   background-color: var(--bg-light-secondary);
@@ -24,4 +25,11 @@
 }
 .country-card span {
   font-weight: 400;
+}
+
+/* Hover card */
+@media (hover) {
+  .country-card:hover {
+    transform: scale(1.015);
+  }
 }

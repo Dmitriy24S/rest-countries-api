@@ -61,20 +61,20 @@ main {
 /* Country list */
 .country-list {
   display: flex;
-  gap: 3rem;
-  margin-top: 3rem;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+  margin-top: 3rem;
+  padding-bottom: 5rem;
 }
 
-/* Country actions section - tablet / desktop */
+/* Spacing for tablet / desktop */
 @media (min-width: 550px) {
   .country-list-actions {
     display: flex;
     justify-content: space-between;
   }
 }
-
 @media (min-width: 1140px) {
   .country-list {
     justify-content: space-between;

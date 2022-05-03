@@ -1,4 +1,5 @@
 import "./CountryCard.css";
+import { Link } from "react-router-dom";
 
 type CountryCardProps = {
   name: string;
@@ -16,26 +17,28 @@ type CountryCardProps = {
   nativeName: string;
 };
 
-const CountryCard = ({ ...item }: CountryCardProps) => {
+const CountryCard = ({ ...country }: CountryCardProps) => {
   return (
-    <article className="country-card">
-      <img src={item.flag} alt="flag" className="country-flag" />
-      <div className="country-info">
-        <h2>{item.name}</h2>
-        <p>
-          Population:
-          <span> {item.population}</span>
-        </p>
-        <p>
-          Region:
-          <span> {item.region}</span>
-        </p>
-        <p>
-          Capital:
-          <span> {item.capital}</span>
-        </p>
-      </div>
-    </article>
+    <Link to={`/countries/${country.name}`}>
+      <article className="country-card">
+        <img src={country.flag} alt="flag" className="country-flag" />
+        <div className="country-info">
+          <h2>{country.name}</h2>
+          <p>
+            Population:
+            <span> {country.population}</span>
+          </p>
+          <p>
+            Region:
+            <span> {country.region}</span>
+          </p>
+          <p>
+            Capital:
+            <span> {country.capital}</span>
+          </p>
+        </div>
+      </article>
+    </Link>
   );
 };
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Search from "./components/Search/Search";
-import Filter from "./components/Filter/Filter";
-import CountryCard from "./components/CountryCard/CountryCard";
+import CountryList from "./components/CountryList/CountryList";
+import CountryPage from "./components/CountryPage/CountryPage";
 
 type CountryData = {
   name: string;
@@ -26,7 +26,8 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState("All");
-  const [filteredData, setFilteredData] = useState(data);
+  const [filteredData, setFilteredData] = useState<CountryData[]>([]);
+  const [finalData, setFinalData] = useState<CountryData[]>([]);
 
   // Filter list func
   const filterCountryData = () => {
@@ -35,10 +36,10 @@ function App() {
       const newFilteredData = data.filter(
         (item): any => item.region === selectedFilter
       );
-      setFilteredData(newFilteredData);
+      setFinalData(newFilteredData);
     } else {
       // If selected filter is all = show all data
-      setFilteredData(data);
+      setFinalData(data);
     }
   };
 
@@ -56,6 +57,7 @@ function App() {
         // console.log(data);
         setData(data);
         setFilteredData(data);
+        setFinalData(data);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(true);
@@ -67,29 +69,27 @@ function App() {
 
   return (
     <div className={`App ${!darkMode ? "light-mode" : ""}`}>
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <main>
-        <section className="country-list-actions">
-          <Search />
-          <Filter
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-        </section>
-        {/* Country list container*/}
-        <section className="country-list">
-          {/* Loading */}
-          {isLoading && (
-            <section className="loading">
-              <h2>Loading...</h2>
-            </section>
-          )}
-          {/* Country list */}
-          {filteredData.map((item) => (
-            <CountryCard {...item} key={item.numericCode} />
-          ))}
-        </section>{" "}
-      </main>
+      <BrowserRouter>
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <CountryList
+                  // searchInputValue={searchInputValue}
+                  // setSearchInputValue={setSearchInputValue}
+                  selectedFilter={selectedFilter}
+                  setSelectedFilter={setSelectedFilter}
+                  isLoading={isLoading}
+                  finalData={finalData}
+                />
+              }
+            />
+            <Route path="/countries/:name" element={<CountryPage />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
     </div>
   );
 }
