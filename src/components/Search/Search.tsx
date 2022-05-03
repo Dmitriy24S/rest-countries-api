@@ -1,7 +1,12 @@
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./Search.css";
 
-const Search = () => {
+type SearchProps = {
+  searchInputValue: string;
+  setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Search = ({ searchInputValue, setSearchInputValue }: SearchProps) => {
   return (
     <section className="search">
       <BiSearchAlt2 className="search-icon" />
@@ -11,6 +16,10 @@ const Search = () => {
         id="search"
         placeholder="Search for a country..."
         autoComplete="off"
+        value={searchInputValue}
+        onChange={(e) => {
+          setSearchInputValue(e.target.value);
+        }}
       />
     </section>
   );

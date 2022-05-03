@@ -3,8 +3,8 @@ import Filter from "../Filter/Filter";
 import CountryCard from "../CountryCard/CountryCard";
 
 const CountryList = ({
-  //   searchInputValue,
-  //   setSearchInputValue,
+  searchInputValue,
+  setSearchInputValue,
   selectedFilter,
   setSelectedFilter,
   isLoading,
@@ -14,8 +14,8 @@ const CountryList = ({
     <>
       <section className="country-list-actions">
         <Search
-        //   searchInputValue={searchInputValue}
-        //   setSearchInputValue={setSearchInputValue}
+          searchInputValue={searchInputValue}
+          setSearchInputValue={setSearchInputValue}
         />
         <Filter
           selectedFilter={selectedFilter}
