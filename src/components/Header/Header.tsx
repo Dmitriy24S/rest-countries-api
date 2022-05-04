@@ -1,14 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import "./Header.css";
 
-type HeaderProps = {
-  darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const Header = () => {
+  const [darkMode, setDarkMode] = useState(true);
 
-const Header = ({ darkMode, setDarkMode }: HeaderProps) => {
+  const handleThemeToggle = () => {
+    document.body.classList.toggle("light-mode");
+    setDarkMode(!darkMode);
+  };
+
   return (
     <header className="header">
       <div className="header-content">
@@ -19,7 +21,7 @@ const Header = ({ darkMode, setDarkMode }: HeaderProps) => {
         <button
           className="theme-toggle"
           aria-label="toggle page theme"
-          onClick={() => setDarkMode(!darkMode)}
+          onClick={handleThemeToggle}
         >
           {darkMode ? (
             <div className="theme-text">

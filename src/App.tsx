@@ -23,7 +23,6 @@ type CountryData = {
 
 function App() {
   const [data, setData] = useState<CountryData[]>([]);
-  const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [filteredData, setFilteredData] = useState<CountryData[]>([]);
@@ -88,9 +87,9 @@ function App() {
   }, []);
 
   return (
-    <div className={`App ${!darkMode ? "light-mode" : ""}`}>
+    <div className="App">
       <BrowserRouter>
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Header />
         <main>
           <Routes>
             <Route
