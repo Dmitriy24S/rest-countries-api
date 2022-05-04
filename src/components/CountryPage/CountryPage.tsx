@@ -72,12 +72,12 @@ const CountryPage = () => {
                     <span> {country?.population.toLocaleString()}</span>
                   </p>
                   <p>
-                    Sub Region:
-                    <span> {country?.subregion}</span>
-                  </p>
-                  <p>
                     Region:
                     <span> {country?.region}</span>
+                  </p>
+                  <p>
+                    Sub Region:
+                    <span> {country?.subregion}</span>
                   </p>
                   <p>
                     Capital:

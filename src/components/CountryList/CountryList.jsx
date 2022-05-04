@@ -1,6 +1,7 @@
 import Search from "../Search/Search";
 import Filter from "../Filter/Filter";
 import CountryCard from "../CountryCard/CountryCard";
+import { useEffect } from "react";
 
 const CountryList = ({
   searchInputValue,
@@ -10,6 +11,11 @@ const CountryList = ({
   isLoading,
   finalData,
 }) => {
+  useEffect(() => {
+    // reset search input value on load, for example: after returning from full country page info
+    setSearchInputValue("");
+  }, []);
+
   return (
     <>
       <section className="country-list-actions">

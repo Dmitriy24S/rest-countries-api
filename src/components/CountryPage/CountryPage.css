@@ -38,7 +38,10 @@
   padding: 0.7rem 0rem 0rem;
 }
 .country-details .country-flag {
-  height: 300px;
+  /* height: 300px; */
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 10;
 }
 .country-details .country-info {
   display: flex;
@@ -50,6 +53,11 @@
 .country-info-section {
   letter-spacing: 0.3px;
   opacity: 0.9;
+}
+.country-info-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .country-info-section p {
   font-weight: 600;
@@ -87,9 +95,43 @@
 }
 
 /* Desktop layout */
-@media (min-width: 820px) {
+@media (min-width: 920px) {
   .country-details {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    margin: 0;
+    max-width: none;
+  }
+  .country-details .country-flag-container {
+    width: 46%;
+  }
+  .country-details .country-info {
+    width: 46%;
+  }
+  .country-info-sections-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .country-name h2 {
+    margin-bottom: 0;
+  }
+  .border-countries-container {
+    display: flex;
+    gap: 2rem;
+  }
+  .border-countries-container p {
+    min-width: max-content;
+    margin: 0;
+    gap: 1rem;
+  }
+  .border-countries-list {
+    margin: 0;
+    gap: 0.7rem;
+  }
+  .border-countries-list .tag {
+    padding: 0.7rem 1rem;
+    margin: 0;
   }
 }
