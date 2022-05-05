@@ -75,7 +75,7 @@ function App() {
         const data = await response.json();
         // console.log(data);
         setData(data);
-        // setFilteredData(data);
+        setFilteredData(data);
         setFinalData(data);
         setIsLoading(false);
       } catch (error) {
@@ -93,7 +93,7 @@ function App() {
         <main>
           <Routes>
             <Route
-              path="/"
+              path="/rest-countries-api/"
               element={
                 <CountryList
                   searchInputValue={searchInputValue}
@@ -105,7 +105,10 @@ function App() {
                 />
               }
             />
-            <Route path="/countries/:name" element={<CountryPage />} />
+            <Route
+              path="/rest-countries-api/countries/:name"
+              element={<CountryPage />}
+            />
           </Routes>
         </main>
       </BrowserRouter>

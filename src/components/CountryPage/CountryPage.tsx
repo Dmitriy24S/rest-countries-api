@@ -42,7 +42,7 @@ const CountryPage = () => {
       ) : (
         <>
           {/* Back button */}
-          <Link to="/">
+          <Link to="/rest-countries-api/">
             <button className="back-button">
               <>
                 <MdOutlineKeyboardBackspace className="back-button-icon" />
@@ -94,14 +94,20 @@ const CountryPage = () => {
                   </p>
                   <p>
                     Currencies:
-                    {country?.currencies.map((currency, index) => (
-                      <span key={index}> {currency.name}</span>
-                    ))}
+                    {country?.currencies.map((currency, index, arr) =>
+                      // add "," after item, unless it's the last one in the list
+                      index === arr.length - 1 ? (
+                        <span key={index}> {currency.name}</span>
+                      ) : (
+                        <span key={index}>{` ${currency.name}, `}</span>
+                      )
+                    )}
                   </p>
                   <p>
                     <>
                       Languages:
                       {country?.languages.map((language, index, arr) =>
+                        // add "," after item, unless it's the last one in the list
                         index === arr.length - 1 ? (
                           <span key={index}> {language.name}</span>
                         ) : (

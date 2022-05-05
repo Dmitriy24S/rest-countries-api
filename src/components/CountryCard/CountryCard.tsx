@@ -19,7 +19,7 @@ type CountryCardProps = {
 
 const CountryCard = ({ ...country }: CountryCardProps) => {
   return (
-    <Link to={`/countries/${country.name}`}>
+    <Link to={`/rest-countries-api/countries/${country.name}`}>
       <article className="country-card">
         <img src={country.flag} alt="flag" className="country-flag" />
         <div className="country-info">

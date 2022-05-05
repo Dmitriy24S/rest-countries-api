@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
-        <Link to="/">
+        <Link to="/rest-countries-api/">
           <div className="logo">Where in the world?</div>
         </Link>
         {/* Theme toggle */}
