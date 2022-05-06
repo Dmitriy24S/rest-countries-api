@@ -94,7 +94,7 @@ const CountryPage = () => {
                   </p>
                   <p>
                     Currencies:
-                    {country?.currencies.map((currency, index, arr) =>
+                    {country?.currencies?.map((currency, index, arr) =>
                       // add "," after item, unless it's the last one in the list
                       index === arr.length - 1 ? (
                         <span key={index}> {currency.name}</span>
