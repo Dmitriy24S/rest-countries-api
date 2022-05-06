@@ -25,16 +25,44 @@ function App() {
   const [data, setData] = useState<CountryData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState("All");
+  const [searchInputValue, setSearchInputValue] = useState("");
   const [filteredData, setFilteredData] = useState<CountryData[]>([]);
   const [finalData, setFinalData] = useState<CountryData[]>([]);
-  const [searchInputValue, setSearchInputValue] = useState("");
 
+  // Pagination section - Start
+  const [paginatedData, setPaginatedData] = useState<CountryData[]>([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const dataPerPage = 10;
+  const dataShown = (pageNumber - 1) * dataPerPage;
+  const pageCount = Math.ceil(finalData.length / dataPerPage);
+
+  // ! any type fix ?
+  const handlePaginationChange = (event: any, value: number) => {
+    setPageNumber(value);
+  };
+
+  // update paginated data on update of page
+  useEffect(() => {
+    setPaginatedData(finalData.slice(dataShown, dataShown + dataPerPage));
+  }, [pageNumber]);
+
+  // pagination theme
+  const [darkMode, setDarkMode] = useState(true);
+
+  const handleThemeToggle = () => {
+    document.body.classList.toggle("light-mode");
+    setDarkMode(!darkMode);
+  };
+  // Pagination section - End
+
+  //
   // Filter country list by selected region filter
+  //
   useEffect(() => {
     // Filter data on selected filter choice
     if (selectedFilter !== "All") {
       const newFilteredData = data.filter(
-        (item): any => item.region === selectedFilter
+        (item: CountryData) => item.region === selectedFilter
       );
       if (searchInputValue != null) {
         // if search not empty = update filtered data for filtering with search input // ! future refactor ?
@@ -55,19 +83,32 @@ function App() {
     }
   }, [selectedFilter]);
 
+  //
+  // Update paginated data and return to page 1 if data is updated. E.g. filter/search
+  //
+  useEffect(() => {
+    setPaginatedData(finalData.slice(0, dataPerPage));
+    setPageNumber(1);
+  }, [finalData]);
+
+  //
   // Filter country list by search
+  //
   useEffect(() => {
     // If search field has text = filter data
     if (searchInputValue != null) {
       // take filtered data by current selected region filter -> filter it by search value
-      const newFilteredBySearchData = filteredData.filter((country: any) =>
-        country.name.toLowerCase().includes(searchInputValue?.toLowerCase())
+      const newFilteredBySearchData = filteredData.filter(
+        (country: CountryData) =>
+          country.name.toLowerCase().includes(searchInputValue?.toLowerCase())
       );
       setFinalData(newFilteredBySearchData);
     }
   }, [searchInputValue, filteredData]);
 
+  //
   // Fetch data on load
+  //
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -89,7 +130,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header handleThemeToggle={handleThemeToggle} darkMode={darkMode} />
         <main>
           <Routes>
             <Route
@@ -101,7 +142,12 @@ function App() {
                   selectedFilter={selectedFilter}
                   setSelectedFilter={setSelectedFilter}
                   isLoading={isLoading}
+                  darkMode={darkMode}
                   finalData={finalData}
+                  paginatedData={paginatedData}
+                  handlePaginationChange={handlePaginationChange}
+                  pageCount={pageCount}
+                  pageNumber={pageNumber}
                 />
               }
             />

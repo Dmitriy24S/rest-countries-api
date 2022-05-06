@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import "./Header.css";
 
-const Header = () => {
-  const [darkMode, setDarkMode] = useState(true);
+type HeaderProps = {
+  handleThemeToggle: () => void;
+  darkMode: boolean;
+};
 
-  const handleThemeToggle = () => {
-    document.body.classList.toggle("light-mode");
-    setDarkMode(!darkMode);
-  };
-
+const Header = ({ handleThemeToggle, darkMode }: HeaderProps) => {
   return (
     <header className="header">
       <div className="header-content">

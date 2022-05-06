@@ -53,8 +53,6 @@ ul {
 .App {
   min-height: 100vh;
   text-align: center;
-  /* background-color: var(--bg-dark-primary);
-  color: var(--bg-light-secondary); */
 }
 
 main {
@@ -71,6 +69,12 @@ main {
   gap: 3.5rem;
   margin-top: 3rem;
   padding-bottom: 5rem;
+}
+
+/* Pagination - Material UI */
+.css-wjh20t-MuiPagination-ul {
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
 /* Spacing for tablet / desktop */
