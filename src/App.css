@@ -72,7 +72,7 @@ main {
 }
 
 /* Pagination - Material UI */
-.css-wjh20t-MuiPagination-ul {
+.MuiPagination-ul {
   justify-content: center;
   margin-bottom: 3rem;
 }
