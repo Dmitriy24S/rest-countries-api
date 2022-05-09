@@ -57,7 +57,7 @@ ul {
 
 main {
   max-width: 69rem;
-  padding: 0 1.5rem;
+  padding: 0 1.7rem;
   margin: 0 auto;
 }
 
@@ -86,6 +86,7 @@ main {
 }
 @media (min-width: 1140px) {
   .country-list {
-    justify-content: space-between;
+    gap: 4.5rem;
+    justify-content: flex-start;
   }
 }
