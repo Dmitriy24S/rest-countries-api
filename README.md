@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Countries REST API React App
+
+![Design preview for Countries REST API React App](./design/desktop-preview.jpg)
+
+## Welcome 
+
+Countries REST API React App. Created with React, CSS & REST Countries API.
+
+[Live Demo](https://dmitriy24s.github.io/rest-countries-api/) 👈
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
